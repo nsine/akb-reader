@@ -9,11 +9,14 @@ import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
 import JokeDetailsPage from './pages/JokeDetails';
 
+const initialState = {
+  posts: [],
+};
 
 class App extends Component {
   render() {
     return (
-      <Provider store={configureStore()}>
+      <Provider store={configureStore(initialState)}>
         <Router>
           <div>
             <Route path="/" exact component={HomePage} />

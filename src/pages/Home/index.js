@@ -4,26 +4,33 @@ import { Link } from 'react-router-dom';
 
 import * as actions from '../../actions';
 import JokesList from './components/JokesList';
+import Header from '../../components/Header';
 
 class HomePage extends Component {
-  state = {  }
+  state = {
+    itemsPerPage: 10,
+  }
 
   componentWillMount() {
-    this.props.loadPosts();
+    this.props.loadPosts(0, this.state.itemsPerPage);
   }
 
   render() {
     return (
       <div>
-        <div>HomePage</div>
+        <Header></Header>
         <Link to='/joke/1'>Go to joke</Link>
         <Link to='/login'>Go to login</Link>
 
         <div style={{marginTop: '30px'}}>
-          <JokesList posts={this.props.posts}></JokesList>
+          <JokesList posts={this.props.posts} loadMorePosts={this.loadMorePosts}></JokesList>
         </div>
       </div>
     );
+  }
+
+  loadMorePosts = (start) => {
+    this.props.loadPosts(start, this.state.itemsPerPage);
   }
 }
 

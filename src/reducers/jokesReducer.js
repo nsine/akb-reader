@@ -1,5 +1,3 @@
-import * as api from '../api';
-
 import * as constants from '../actions';
 
 export default (state = {}, action) => {

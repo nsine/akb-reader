@@ -5,10 +5,10 @@ export const LOAD_POSTS = 'LOAD_POSTS';
 export const LOAD_POSTS_SUCCESS = 'LOAD_POSTS_SUCCESS';
 
 export const loadPosts = (offset, count) => (dispatch) => {
-  api.getPosts(offset, count).then(res => {
+  api.getJokes(offset, count).then(res => {
     dispatch({
       type: LOAD_POSTS_SUCCESS,
-      data: res.response,
+      data: res.data.items,
     })
   });
 };
