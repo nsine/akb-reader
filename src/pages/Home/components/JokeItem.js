@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from "styled-components";
 import moment from 'moment';
 
-import { Text } from 'grommet';
+import { Text, Button } from 'grommet';
 
 const Wrapper = styled.div`
   padding: 1rem;
@@ -26,6 +26,9 @@ class JokeItem extends Component {
         <Text>
           {this.getFormattedDate(post.date)}
         </Text>
+        <div>
+          <Button primary onClick={() => {}}>Like</Button>
+        </div>
       </Wrapper>
     );
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from "styled-components";
 import { InfiniteScroll, Box } from 'grommet';
 
-import JokeItem from '../JokeItem';
+import JokeItem from './JokeItem';
 
 const Container = styled.div`
   padding: 0 2rem;
@@ -19,7 +19,7 @@ class JokesList extends Component {
   render() {
     const posts = this.props.posts;
     return (
-      <Box pad={{horizontal: '1rem'}}>
+      <Box pad={{horizontal: '1rem'}} style={{maxWidth: '700px', margin: '0 auto'}}>
         <InfiniteScroll step={5} items={posts} onMore={this.loadMorePosts}>
           {item => (
             <JokeItemWrapper key={item.id}>

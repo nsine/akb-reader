@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import * as actions from '../../actions';
+import * as actions from '../../actions/jokesActions';
 import JokesList from './components/JokesList';
-import Header from '../../components/Header';
 
 class HomePage extends Component {
   state = {
@@ -18,7 +17,6 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <Header></Header>
         <Link to='/joke/1'>Go to joke</Link>
         <Link to='/login'>Go to login</Link>
 
@@ -35,7 +33,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts,
+  posts: state.jokes.posts,
 });
 
 const mapDispatchToProps = {

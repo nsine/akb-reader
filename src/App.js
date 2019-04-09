@@ -8,6 +8,7 @@ import './App.css';
 import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
 import JokeDetailsPage from './pages/JokeDetails';
+import Header from './components/Header';
 
 const initialState = {
   posts: [],
@@ -19,6 +20,7 @@ class App extends Component {
       <Provider store={configureStore(initialState)}>
         <Router>
           <div>
+            <Header></Header>
             <Route path="/" exact component={HomePage} />
             <Route path="/login" exact component={LoginPage} />
             <Route path="/joke/:id" component={JokeDetailsPage} />

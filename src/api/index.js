@@ -14,3 +14,10 @@ export function getJokes(offset = 0, count = 0) {
     },
   });
 };
+
+export function login(username, password) {
+  return axiosInstance.post('/auth/login', {
+    name: username,
+    password,
+  });
+};

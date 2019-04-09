@@ -1,6 +1,10 @@
-import * as constants from '../actions';
+import * as constants from '../actions/jokesActions';
 
-export default (state = {}, action) => {
+const initialState = {
+  posts: [],
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case constants.LOAD_POSTS_SUCCESS:
       return {
