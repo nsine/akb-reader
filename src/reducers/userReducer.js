@@ -22,6 +22,14 @@ export default (state = initialState, action) => {
       localStorage.setItem('user', JSON.stringify(newState));
       
       return newState;
+    case constants.LOGOUT:
+      localStorage.removeItem('user');
+      return {
+        ...state,
+        isLoggedIn: false,
+        token: null,
+        name: null,
+      };
     default:
       return state
   }

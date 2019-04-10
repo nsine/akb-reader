@@ -7,6 +7,7 @@ import './App.css';
 
 import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
+import LogoutPage from './pages/Logout';
 import JokeDetailsPage from './pages/JokeDetails';
 import Header from './components/Header';
 
@@ -23,6 +24,7 @@ class App extends Component {
             <Header></Header>
             <Route path="/" exact component={HomePage} />
             <Route path="/login" exact component={LoginPage} />
+            <Route path="/logout" exact component={LogoutPage} />
             <Route path="/joke/:id" component={JokeDetailsPage} />
           </div>
         </Router>

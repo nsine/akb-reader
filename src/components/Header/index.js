@@ -9,7 +9,10 @@ class Header extends Component {
       <Box direction="row" pad="large" margin={{bottom: '1rem'}} justify="end">
         {
           this.props.isLoggedIn ? (
-            <div>{this.props.username}</div>
+            <React.Fragment>
+              <div>{this.props.username}</div>
+              <Link to="/logout">Logout</Link>
+            </React.Fragment>
           ) : (
             <Link to="/login">Login</Link>
           )

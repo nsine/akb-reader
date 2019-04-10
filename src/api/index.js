@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000/api';
-
 const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 export function getJokes(offset = 0, count = 0) {

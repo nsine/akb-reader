@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, FormField, Button, Box } from 'grommet';
-import VK, {Auth} from 'react-vk';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions/userActions';
@@ -14,6 +13,18 @@ class LoginPage extends Component {
 
   handleFormSubmit = ({ value }) => {
     this.props.login(value.name, value.password);
+  }
+
+  handleVKLinkClick = () => {
+    const backendVkUrl = `${process.env.REACT_APP_API_URL}/auth/vk`;
+
+    window.open(`https://oauth.vk.com/authorize?  
+      client_id=${process.env.REACT_APP_VK_APP_ID}&  
+      scope=friends&  
+      redirect_uri=${backendVkUrl}&  
+      response_type=code& 
+      v=5.92`
+    )
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -37,14 +48,7 @@ class LoginPage extends Component {
               <FormField name="name" label="Name" />
               <FormField name="password" label="Password" />
               <Button type="submit" primary label="Login" />
-              <VK apiId={process.env.REACT_APP_VK_APP_ID}>
-                <Auth options={{
-                  onAuth: user => {
-                    console.log(user);
-                  },
-                }}/>
-              </VK>
-              {/* <Button type="submit" primary label="VK" /> */}
+              <Button type="button" primary label="VK" onClick={this.handleVKLinkClick} />
             </Form>
           </Box>
         </Box>
