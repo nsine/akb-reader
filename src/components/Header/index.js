@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import { Box, Anchor } from 'grommet';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
+  static propTypes = {
+    username: PropTypes.string,
+    isLoggedIn: PropTypes.bool,
+  }
+
   render() {
     return (
       <Box direction="row" pad="large" margin={{bottom: '1rem'}} justify="end">
@@ -18,7 +24,7 @@ class Header extends Component {
           )
         }
       </Box>
-    )
+    );
   }
 }
 

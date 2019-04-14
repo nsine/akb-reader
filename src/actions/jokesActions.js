@@ -8,6 +8,6 @@ export const loadPosts = (offset, count) => (dispatch) => {
     dispatch({
       type: LOAD_POSTS_SUCCESS,
       data: res.data.items,
-    })
+    });
   });
 };

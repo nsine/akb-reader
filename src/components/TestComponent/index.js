@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 
 class TestComponent extends Component {
-  state = {  }
+  state = { }
 
   componentWillMount() {
     this.props.updateTestValue();

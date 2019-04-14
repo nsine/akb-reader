@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import { InfiniteScroll, Box } from 'grommet';
+import PropTypes from 'prop-types';
 
 import JokeItem from './JokeItem';
-
-const Container = styled.div`
-  padding: 0 2rem;
-  margin-bottom: 2rem;
-`;
 
 const JokeItemWrapper = styled.div`
   &:not(:last-child) {
@@ -16,10 +12,16 @@ const JokeItemWrapper = styled.div`
 `;
 
 class JokesList extends Component {
+  static propTypes = {
+    posts: PropTypes.array,
+    loadMorePosts: PropTypes.func,
+  }
+
   render() {
     const posts = this.props.posts;
     return (
-      <Box pad={{horizontal: '1rem'}} style={{maxWidth: '700px', margin: '0 auto'}}>
+      <Box pad={{horizontal: '1rem'}} style={{maxWidth: '700px',
+        margin: '0 auto'}}>
         <InfiniteScroll step={5} items={posts} onMore={this.loadMorePosts}>
           {item => (
             <JokeItemWrapper key={item.id}>
@@ -32,7 +34,6 @@ class JokesList extends Component {
   }
 
   loadMorePosts = () => {
-    console.log('more')
     const startIndex = this.props.posts.length;
     this.props.loadMorePosts(startIndex);
   }

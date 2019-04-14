@@ -11,11 +11,17 @@ export function getJokes(offset = 0, count = 0) {
       count,
     },
   });
-};
+}
 
 export function login(username, password) {
   return axiosInstance.post('/auth/login', {
     name: username,
     password,
   });
-};
+}
+
+export function loginOrRegisterWithVk(code) {
+  return axiosInstance.post('/auth/vklogin', {
+    code,
+  });
+}

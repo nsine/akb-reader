@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import { Text, Button } from 'grommet';
 
@@ -15,6 +16,13 @@ const Wrapper = styled.div`
 `;
 
 class JokeItem extends Component {
+  static propTypes = {
+    post: PropTypes.shape({
+      text: PropTypes.string,
+      date: PropTypes.string,
+    }),
+  }
+
   render() {
     const post = this.props.post;
 
@@ -27,7 +35,7 @@ class JokeItem extends Component {
           {this.getFormattedDate(post.date)}
         </Text>
         <div>
-          <Button primary onClick={() => {}}>Like</Button>
+          <Button primary>Like</Button>
         </div>
       </Wrapper>
     );

@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import * as actions from '../../actions/jokesActions';
 import JokesList from './components/JokesList';
 
 class HomePage extends Component {
+  static propTypes = {
+    loadPosts: PropTypes.func,
+    posts: PropTypes.array,
+  }
+
   state = {
     itemsPerPage: 10,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.loadPosts(0, this.state.itemsPerPage);
   }
 

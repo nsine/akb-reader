@@ -11,26 +11,27 @@ const initialState = user || {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case constants.SET_LOGGED_IN_USER:
-      const newState = {
-        ...state,
-        isLoggedIn: true,
-        token: action.payload.token,
-        name: action.payload.username,
-      };
+  case constants.SET_LOGGED_IN_USER:
+    // eslint-disable-next-line no-case-declarations
+    const newState = {
+      ...state,
+      isLoggedIn: true,
+      token: action.payload.token,
+      name: action.payload.username,
+    };
 
-      localStorage.setItem('user', JSON.stringify(newState));
-      
-      return newState;
-    case constants.LOGOUT:
-      localStorage.removeItem('user');
-      return {
-        ...state,
-        isLoggedIn: false,
-        token: null,
-        name: null,
-      };
-    default:
-      return state
+    localStorage.setItem('user', JSON.stringify(newState));
+
+    return newState;
+  case constants.LOGOUT:
+    localStorage.removeItem('user');
+    return {
+      ...state,
+      isLoggedIn: false,
+      token: null,
+      name: null,
+    };
+  default:
+    return state;
   }
-}
+};
