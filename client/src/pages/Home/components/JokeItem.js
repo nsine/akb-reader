@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
 import { Text, Button } from 'grommet';
+import { Like } from 'grommet-icons';
+
+import { likeJoke } from '../../../actions/jokesActions';
 
 const Wrapper = styled.div`
   padding: 1rem;
@@ -18,9 +21,25 @@ const Wrapper = styled.div`
 class JokeItem extends Component {
   static propTypes = {
     post: PropTypes.shape({
+      _id: PropTypes.string,
       text: PropTypes.string,
       date: PropTypes.string,
+      likes: PropTypes.arrayOf(PropTypes.string),
     }),
+
+    likeJoke: PropTypes.func,
+    isLoggedIn: PropTypes.bool,
+    userId: PropTypes.string,
+  }
+
+  handleLikeClick = () => {
+    this.props.likeJoke(this.props.post._id);
+  }
+
+  isLikedByMe = () => {
+    const likes = this.props.post.likes;
+    const myId = this.props.userId;
+    return likes.some(userId => userId === myId);
   }
 
   render() {
@@ -34,8 +53,14 @@ class JokeItem extends Component {
         <Text>
           {this.getFormattedDate(post.date)}
         </Text>
-        <div>
-          <Button primary>Like</Button>
+        <div style={{cursor: 'pointer'}}>
+          {
+            (this.props.isLoggedIn) && (
+              <div onClick={this.handleLikeClick}>
+                <Like color={this.isLikedByMe() ? 'purple' : ''}/>
+              </div>
+            )
+          }
         </div>
       </Wrapper>
     );
@@ -47,4 +72,9 @@ class JokeItem extends Component {
   }
 }
 
-export default JokeItem;
+export default connect(state => ({
+  isLoggedIn: state.user.isLoggedIn,
+  userId: state.user.id,
+}), {
+  likeJoke,
+})(JokeItem);

@@ -8,6 +8,7 @@ export const loginWithVk = vkCode => dispatch => {
     dispatch({
       type: SET_LOGGED_IN_USER,
       payload: {
+        id: res.data.id,
         token: res.data.token,
         username: res.data.name,
       },
@@ -20,6 +21,7 @@ export const login = (username, password) => dispatch => {
     dispatch({
       type: SET_LOGGED_IN_USER,
       payload: {
+        id: res.data.id,
         token: res.data.token,
         username: res.data.name,
       },

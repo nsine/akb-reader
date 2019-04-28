@@ -11,6 +11,33 @@ export default (state = initialState, action) => {
       ...state,
       posts: [...state.posts, ...action.data],
     };
+  case constants.LIKE_JOKE: {
+    const { jokeId, myId } = action.payload;
+
+    const joke = state.posts.find(joke => joke._id === jokeId);
+
+    const newJokeLikes = joke.likes.some(userId => userId === myId) ?
+      joke.likes.filter(userId => userId !== myId) :
+      [...joke.likes, myId];
+    const newJoke = {
+      ...joke,
+      likes: newJokeLikes,
+    };
+
+    return {
+      ...state,
+      posts: state.posts.map(post => {
+        if (post._id !== jokeId) return post;
+        return newJoke;
+      }),
+    };
+  }
+
+  case constants.DISLIKE_JOKE:
+    return {
+      ...state,
+      posts: [...state.posts, ...action.data],
+    };
   default:
     return state;
   }

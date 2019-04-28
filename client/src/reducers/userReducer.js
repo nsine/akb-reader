@@ -17,6 +17,7 @@ export default (state = initialState, action) => {
       ...state,
       isLoggedIn: true,
       token: action.payload.token,
+      id: action.payload.id,
       name: action.payload.username,
     };
 
@@ -29,6 +30,7 @@ export default (state = initialState, action) => {
       ...state,
       isLoggedIn: false,
       token: null,
+      id: null,
       name: null,
     };
   default:

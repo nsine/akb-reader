@@ -19,6 +19,7 @@ const responseWithTokenAndUserData = (res, user) => {
 
   res.json({
     token,
+    id: user._id,
     name: user.name,
   });
 };
@@ -53,9 +54,11 @@ router.post('/vklogin', async (req, res) => {
       vkToken: vkToken,
     });
 
+    await user.save();
+
     responseWithTokenAndUserData(res, user);
   }).catch(err => {
-    console.log(err);
+    console.log('err', err);
   });
 });
 
@@ -92,11 +95,11 @@ router.post('/register', doValidation(registrationValidator), withAsyncErrorHand
   });
 
   user.setPassword(password);
-  return user.save().then(() => {
-    res.json({
-      success: true,
-      name: user.name,
-    });
+  await user.save();
+
+  res.json({
+    success: true,
+    name: user.name,
   });
 }));
 
